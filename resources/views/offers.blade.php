@@ -27,11 +27,7 @@
                         </div>                         
                         <div class="mb-3">
                             <label class="form-label">Price</label>
-                            <input class="form-control" type="number" name="desired_price" id="desired_price">
-                        </div>    
-                        <div class="mb-3">
-                            <label class="form-label">bound_price</label>
-                            <input class="form-control" type="number" name="bound_price" id="bound_price">
+                            <input class="form-control" type="number" name="price" id="price">
                         </div>      
                         <div class="mb-3">
                             <label class="form-label">Amount</label>
@@ -60,14 +56,13 @@
                     </thead>
                     <tbody>
                         @foreach ($offers as $offer)
-                            {{ $offer }}
                             <tr>
                                 <th scope="row">{{$loop->index + 1}}</th>
                                 <td>{{$offer->asset->name}}</td>
                                 <td>{{$offer->currency }} </td>
                                 <td>{{$offer->tosell}}</td>
                                 <td>{{$offer->amount}}</td>
-                                <td>{{$offer->desired_price}}</td>
+                                <td>{{$offer->price}}</td>
                                 <td><a href="/offer/{{$offer->id}}">View</a></td>
                             </tr>
                         @endforeach

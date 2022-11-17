@@ -22,8 +22,7 @@ class TradeController extends Controller
             'asset_id' => $asset->id,
             'user_id' => $user->id,
             'amount' => $request->amount * pow(10, $asset->decimals),
-            'desired_price' => $request->desired_price * pow(10,6),
-            'bound_price' => $request->bound_price * pow(10,6),
+            'price' => $request->price * pow(10,6),
             'currency' => $request->currency,
             'tosell' => $request->tosell,
             'status' => 'created'
@@ -40,8 +39,7 @@ class TradeController extends Controller
         }
         OfferSubmission::create([
             'offer_id' => $offer->id,
-            'user_id' => $user->id,
-            'price' => $request->price,            
+            'user_id' => $user->id,          
         ]);
         return back();
     }    

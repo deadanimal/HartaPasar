@@ -12,7 +12,6 @@ class OfferSubmission extends Model
     protected $fillable = [
         'offer_id',
         'user_id',
-        'price',
     ]; 
 
     public function offer()
