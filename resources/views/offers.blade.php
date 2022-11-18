@@ -17,17 +17,10 @@
                                     <option value={{$asset->id}}>{{ $asset->name}}</option>
                                 @endforeach
                             </select>
-                        </div>     
-                        <div class="mb-3">
-                            <label class="form-label">Currency</label>
-                            <select class="form-select" name="currency" id="currency">
-                                <option value="USD" selected>US Dollar</option>
-                                <option value="EUR">Euro</option>
-                            </select>
-                        </div>                         
+                        </div>                            
                         <div class="mb-3">
                             <label class="form-label">Price</label>
-                            <input class="form-control" type="number" name="price" id="price">
+                            <input class="form-control" type="number" step="0.000001" name="price" id="price">
                         </div>      
                         <div class="mb-3">
                             <label class="form-label">Amount</label>

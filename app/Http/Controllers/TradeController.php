@@ -26,7 +26,6 @@ class TradeController extends Controller
             'user_id' => $user->id,
             'amount' => $request->amount * pow(10, $asset->decimals),
             'price' => $request->price * pow(10,6),
-            'currency' => $request->currency,
             'tosell' => $request->tosell,
             'status' => 'created'
         ]);
