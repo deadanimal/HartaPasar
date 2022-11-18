@@ -14,7 +14,6 @@ class Offer extends Model
         'user_id',
         'amount',
         'price',
-        'currency',
         'status',
         'tosell',
         'offer_submission_id',
@@ -41,6 +40,11 @@ class Offer extends Model
     {
         return $this->hasMany(OfferSubmission::class);
     }    
+
+    public function credit_submissions()
+    {
+        return $this->hasMany(OfferSubmissionCredit::class);
+    }     
     
     public function user()
     {

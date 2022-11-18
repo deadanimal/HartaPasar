@@ -6,12 +6,19 @@
             <div class="card">
                 <div class="card-header">Offer Detail</div>
                 <div class="card-body">
-                    {{ $offer }}
+                    Offer:
+                    {{ $offer }} <br/>
+
+                    Asset:
+                    {{$offer->asset}}
+
                 </div>
                 @if (Auth::user()->id != $offer->user_id)
                     <div class="card-footer">
-                        <button type="submit" name="tosell" value=0 class="btn btn-warning">Query Offer</button>
-                        <button type="submit" name="tosell" value=0 class="btn btn-success">Submit Offer</button>
+                        <form action="/offer/{{$offer->id}}/cash" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-success">Submit Offer</button>
+                        </form>                                                                      
                     </div>
                 @endif
             </div>
@@ -35,11 +42,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    @foreach($offer->submissions as $submission)
+                                    {{$submission}}
                                     <tr>
                                         <th scope="row">1</th>
-
                                     </tr>
+                                    @endforeach
 
                                 </tbody>
                             </table>
@@ -64,16 +72,32 @@
                                 </thead>
                                 <tbody>
 
+                                    @foreach($offer->queries as $query)
+                                    {{$query}}
+                                    @foreach($query->responses as $response)
+                                    {{$response}}
+                                    @endforeach
                                     <tr>
                                         <th scope="row">1</th>
-
                                     </tr>
+                                    @endforeach
 
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+            </div>
+        @else
+            <div class="col-xl-8">
+                @foreach($offer->queries as $query)
+                    <p>{{$query->responses}}</p>
+                @endforeach
+                <form action="/offer/{{$offer->id}}/query" method="POST">
+                    @csrf
+                    <textarea class="form-control" name="message"></textarea>
+                    <button type="submit" class="btn btn-warning">Query Offer</button>
+                </form>   
             </div>
         @endif
     </div>

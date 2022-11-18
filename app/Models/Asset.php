@@ -11,5 +11,6 @@ class Asset extends Model
 
     protected $fillable = [
         'name',
+        'currency',
     ];     
 }

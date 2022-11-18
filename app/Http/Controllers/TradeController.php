@@ -76,9 +76,18 @@ class TradeController extends Controller
         $user = $request->user();
         $id = $request->route('id');
         $offer = Offer::find($id);   
+        $query_exists = Query::where([
+            'offer_id'=> $offer->id,
+            'user_id'=> $user->id,            
+        ])->exists();   
+
         if($offer->trader_id == $user->id) {
             return back();
-        }                
+        }       
+        if($query_exists == true) {
+            return back();
+        }     
+         
         $query = Query::create([
             'offer_id'=> $offer->id,
             'user_id'=> $user->id,            
