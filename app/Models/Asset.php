@@ -11,11 +11,15 @@ class Asset extends Model
 
     protected $fillable = [
         'name',
-        'currency',
+        'symbol',
+        'asset_type',
+        'si_unit',
+        'decimals',
+        'denominator',		        
     ];  
     
-    public function prices()
-    {
+    public function prices() {
         return $this->hasMany(AssetPrice::class);
-    }       
+    }      
+         
 }

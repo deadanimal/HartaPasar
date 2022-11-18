@@ -41,8 +41,8 @@
             </div>
         </div>
         <div class="col-xl-9">
-            Buy Offer
-            <div class="table-responsive">
+            <h3>Buy From You</h3>
+            <div class="table-responsive mb-3">
                 <table class="table table-sm">
                     <thead>
                         <tr>
@@ -50,6 +50,7 @@
                             <th scope="col">Asset</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Total</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -58,16 +59,17 @@
                             <tr>
                                 <th scope="row">{{$loop->index + 1}}</th>
                                 <td>{{$offer->asset->name}}</td>
-                                <td>{{number_format($offer->amount / pow(10,6), 3, ".", ",")}}</td>
-                                <td>{{$offer->asset->currency}} {{number_format($offer->price / pow(10,6), 2, ".", ",")}}</td>
-                                <td><a href="/offer/{{$offer->id}}">View</a></td>
+                                <td>{{number_format($offer->amount / pow(10,6), 3, ".", ",")}} {{$offer->asset->symbol}}</td>
+                                <td>{{$offer->asset->denominator}} {{number_format($offer->price / pow(10,6), 2, ".", ",")}}</td>
+                                <td>{{$offer->asset->denominator}} {{number_format(($offer->amount / pow(10,6)) *($offer->price / pow(10,6)), 2, ".", ",")}}</td>
+                                <td><a href="/offer/{{$offer->id}}"><button type="button" class="btn btn-info px-4 me-sm-3">View</button></a></td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
 
-            Sell Offer
+            <h3>Sell To You</h3>
             <div class="table-responsive">
                 <table class="table table-sm">
                     <thead>
@@ -76,6 +78,7 @@
                             <th scope="col">Asset</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Total</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -84,9 +87,10 @@
                             <tr>
                                 <th scope="row">{{$loop->index + 1}}</th>
                                 <td>{{$offer->asset->name}}</td>
-                                <td>{{number_format($offer->amount / pow(10,6), 3, ".", ",")}}</td>
-                                <td>{{$offer->asset->currency}} {{number_format($offer->price / pow(10,6), 2, ".", ",")}}</td>
-                                <td><a href="/offer/{{$offer->id}}">View</a></td>
+                                <td>{{number_format($offer->amount / pow(10,6), 3, ".", ",")}} {{$offer->asset->symbol}}</td>
+                                <td>{{$offer->asset->denominator}} {{number_format($offer->price / pow(10,6), 2, ".", ",")}}</td>
+                                <td>{{$offer->asset->denominator}} {{number_format(($offer->amount / pow(10,6)) *($offer->price / pow(10,6)), 2, ".", ",")}}</td>
+                                <td><a href="/offer/{{$offer->id}}"><button type="button" class="btn btn-info px-4 me-sm-3">View</button></a></td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -26,7 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::post('offer/{id}/query', [TradeController::class, 'query_offer']);
     Route::post('offer/{offer_id}/query/{query_id}', [TradeController::class, 'respond_to_query']);
 
+    Route::get('trader', [WebController::class, 'view_traders']);
     Route::get('trader/{name}', [WebController::class, 'view_trader']);
+
     Route::get('peer-offer/{id}', [TradeController::class, 'view_peer_offer']);
     Route::post('peer-offer}', [TradeController::class, 'create_peer_offer']);
     Route::post('peer-offer/{id}', [TradeController::class, 'respond_to_peer_offer']);
@@ -50,3 +52,7 @@ Route::middleware('role:admin')->prefix('admin')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

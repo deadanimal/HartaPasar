@@ -17,6 +17,14 @@ class WebController extends Controller
     public function dashboard(Request $request) {
         return view('dashboard');
     }  
+
+    public function view_traders(Request $request) {
+        $name = $request->route('name');
+        $promoted_traders = User::where('promoted', true)->get();
+        $high_traders = User::where('promoted', true)->get();
+                 
+        return view('traders', compact('promoted_traders', 'high_traders'));
+    }    
     
     public function view_trader(Request $request) {
         $name = $request->route('name');
@@ -33,7 +41,7 @@ class WebController extends Controller
             ['add_liquidity', '=', true],
             ['user_id','=', $trader->id],           
         ])->get();
-                 
+
         return view('trader', compact('trader', 'buy_offers', 'sell_offers'));
     }
 

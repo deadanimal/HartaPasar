@@ -30,6 +30,7 @@
 
             <ul class="nav nav-pills">
                 <li class="nav-item"><a class="nav-link" href="/asset">Asset</a></li>
+                <li class="nav-item"><a class="nav-link" href="/trader">Trader</a></li>
                 <li class="nav-item"><a class="nav-link" href="/offer">Offer</a></li>
                 @if (Auth::user())
                     <a href="/dashboard"><button type="button" class="btn btn-primary">Dashboard</button></a>
