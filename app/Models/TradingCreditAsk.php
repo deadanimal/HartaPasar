@@ -11,6 +11,8 @@ class TradingCreditAsk extends Model
 
     protected $fillable = [
         'amount',
+        'comment',
+        'approved',
         'trading_relationship_id',
     ]; 
 

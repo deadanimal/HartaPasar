@@ -12,6 +12,9 @@ use App\Models\OfferSubmission;
 use App\Models\Query;
 use App\Models\QueryResponse;
 
+use App\Models\PeerOffer;
+use App\Models\PeerResponse;
+
 class TradeController extends Controller
 {
 
@@ -87,7 +90,7 @@ class TradeController extends Controller
         if($query_exists == true) {
             return back();
         }     
-         
+
         $query = Query::create([
             'offer_id'=> $offer->id,
             'user_id'=> $user->id,            
@@ -126,7 +129,22 @@ class TradeController extends Controller
     public function view_offers(Request $request) {
         $id = $request->route('id');
         $assets = Asset::all();
-        $offers = Offer::where('status', 'created')->get(); 
-        return view('offers', compact('offers', 'assets'));
+        $buy_offers = Offer::where([
+            ['status','=', 'created'],
+            ['tosell', '=', false]
+        ])->get(); 
+        $sell_offers = Offer::where([
+            ['status','=', 'created'],
+            ['tosell', '=', true]            
+        ])->get(); 
+        return view('offers', compact('buy_offers', 'sell_offers', 'assets'));
     }    
+
+
+    public function view_peer_offer(Request $request) {
+        $id = $request->route('id');
+        $offer = PeerOffer::find($id); 
+        return view('peer_offer', compact('offer'));
+    }
+
 }

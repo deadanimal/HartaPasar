@@ -10,6 +10,7 @@ class TradingSettlement extends Model
     use HasFactory;
 
     protected $fillable = [
+        'settled',
         'amount',
         'trading_relationship_id',
     ]; 

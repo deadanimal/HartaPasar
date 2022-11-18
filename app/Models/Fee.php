@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PriceAsset extends Model
+class Fee extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'asset_id',
-        'price',
+        'amount',
+        'feeable_type',
+        'feeable_id',
     ]; 
 
-    public function asset()
-    {
-        return $this->belongsTo(Asset::class);
-    }      
 }

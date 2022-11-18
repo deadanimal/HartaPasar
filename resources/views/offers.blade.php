@@ -41,34 +41,57 @@
             </div>
         </div>
         <div class="col-xl-9">
+            Buy Offer
             <div class="table-responsive">
                 <table class="table table-sm">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Asset</th>
-                            <th scope="col">Currency</th>
-                            <th scope="col">Buy/Sell</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Price</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($offers as $offer)
+                        @foreach ($buy_offers as $offer)
                             <tr>
                                 <th scope="row">{{$loop->index + 1}}</th>
                                 <td>{{$offer->asset->name}}</td>
-                                <td>{{$offer->currency }} </td>
-                                <td>{{$offer->tosell}}</td>
-                                <td>{{$offer->amount}}</td>
-                                <td>{{$offer->price}}</td>
+                                <td>{{number_format($offer->amount / pow(10,6), 3, ".", ",")}}</td>
+                                <td>{{$offer->asset->currency}} {{number_format($offer->price / pow(10,6), 2, ".", ",")}}</td>
                                 <td><a href="/offer/{{$offer->id}}">View</a></td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
+
+            Sell Offer
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Asset</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Price</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($sell_offers as $offer)
+                            <tr>
+                                <th scope="row">{{$loop->index + 1}}</th>
+                                <td>{{$offer->asset->name}}</td>
+                                <td>{{number_format($offer->amount / pow(10,6), 3, ".", ",")}}</td>
+                                <td>{{$offer->asset->currency}} {{number_format($offer->price / pow(10,6), 2, ".", ",")}}</td>
+                                <td><a href="/offer/{{$offer->id}}">View</a></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>            
         </div>        
     </div>
 @endsection

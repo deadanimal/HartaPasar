@@ -5,28 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OfferSubmissionCredit extends Model
+class PeerResponse extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'offer_id',
+        'filled',
+        'peer_offer_id',
         'user_id',
-        'trading_relationship_id',
-    ]; 
+    ];     
 
     public function offer()
     {
-        return $this->belongsTo(Offer::class);
-    }  
+        return $this->belongsTo(PeerOffer::class, 'peer_offer_id');
+    }   
     
     public function user()
     {
         return $this->belongsTo(User::class);
-    }   
-    
-    public function trading_relationship()
-    {
-        return $this->belongsTo(TradingRelationship::class);
-    }      
+    }        
 }

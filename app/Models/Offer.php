@@ -39,12 +39,7 @@ class Offer extends Model
     public function submissions()
     {
         return $this->hasMany(OfferSubmission::class);
-    }    
-
-    public function credit_submissions()
-    {
-        return $this->hasMany(OfferSubmissionCredit::class);
-    }     
+    }       
     
     public function user()
     {
