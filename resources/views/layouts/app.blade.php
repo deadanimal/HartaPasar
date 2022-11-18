@@ -51,7 +51,7 @@
 
     <footer class="mt-3 py-3 bg-light">
         <div class="container">
-            <span class="text-muted">2022 &copy; Harta Pasar Labs
+            <span class="text-muted">2022 &copy; Pipeline Network Sdn. Bhd.
                 @role('admin')
                     <a href="/admin">Admin Dashboard</a> |
                 @endrole
