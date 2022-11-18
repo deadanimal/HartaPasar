@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\TradeController;
 use App\Http\Controllers\WebController;
 
@@ -32,6 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::get('peer-offer/{id}', [TradeController::class, 'view_peer_offer']);
     Route::post('peer-offer}', [TradeController::class, 'create_peer_offer']);
     Route::post('peer-offer/{id}', [TradeController::class, 'respond_to_peer_offer']);
+
+    Route::post('trader/{id}/create-chatroom', [ChatController::class, 'create_chatroom']);
+    Route::post('chatroom/{id}', [ChatController::class, 'send_message']);
 });
 
 Route::middleware('role:admin')->prefix('admin')->group(function () {

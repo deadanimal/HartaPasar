@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\User;
 use App\Models\ChatAttachment;
 use App\Models\ChatMessage;
 use App\Models\ChatRoom;
@@ -14,7 +15,8 @@ class ChatController extends Controller
 
     public function create_chatroom(Request $request) {
         $user = $request->user();
-        $receiver = $request->receiver_id;
+        $id = $request->route('id');
+        $receiver = User::find($id);
 
         $exist1 = ChatRoomParticipant::where('user_id', $user->id)->first();
         $exist2 = ChatRoomParticipant::where('user_id', $receiver->id)->first();
@@ -66,7 +68,8 @@ class ChatController extends Controller
 
         ChatMessage::create([
             'chat_room_id' => $chatroom->id,
-            'message' => $request->message
+            'message' => $request->message,
+            'user_id' => $user->id
         ]);
         return back();
     }    

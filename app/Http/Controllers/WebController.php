@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Asset;
+use App\Models\ChatRoom;
+use App\Models\ChatRoomParticipant;
 use App\Models\User;
 
 use App\Models\PeerOffer;
@@ -28,6 +30,7 @@ class WebController extends Controller
     
     public function view_trader(Request $request) {
         $name = $request->route('name');
+        $user = $request->user();
         $trader = User::where('public_name', $name)->first();
 
         $buy_offers = PeerOffer::where([
@@ -42,7 +45,19 @@ class WebController extends Controller
             ['user_id','=', $trader->id],           
         ])->get();
 
-        return view('trader', compact('trader', 'buy_offers', 'sell_offers'));
+        $chatroom_exists = false;
+
+        $exist1 = ChatRoomParticipant::where('user_id', $user->id)->first();
+        $exist2 = ChatRoomParticipant::where('user_id', $trader->id)->first();
+
+        if($exist1 && $exist2) {
+            $chatroom_exists = true;
+            $chatroom = ChatRoom::find($exist1->chat_room_id);
+        } else {
+            $chatroom = collect();
+        }
+
+        return view('trader', compact('trader', 'buy_offers', 'sell_offers', 'chatroom' ,'chatroom_exists'));
     }
 
     public function view_assets(Request $request) {
